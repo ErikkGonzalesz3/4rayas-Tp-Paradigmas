@@ -1,0 +1,22 @@
+import wollok.game.*
+
+import example.pepita
+
+program cuatroEnRaya {
+	game.title("4 en Raya")
+	game.height(6)
+	game.width(7)
+
+	game.cellSize() //tamaño de celda
+	game.board
+
+	game.addVisual(controles)
+
+
+	keyboard.left().onPressDo({ controles.moverIzquierda})
+	keyboard.right().onPressDo({ controles.moverDerecha})
+
+
+
+	game.start()
+}
