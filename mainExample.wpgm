@@ -16,10 +16,7 @@ program cuatroEnRaya {
 	game.addVisual(controles)
 
 
-	// keyboard.left().onPressDo({ controles.moverIzquierda})
-	// keyboard.right().onPressDo({ controles.moverDerecha})
-
-
+	juego.iniciarJuego()
 
 	game.start()
 }
