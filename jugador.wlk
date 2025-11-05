@@ -1,6 +1,6 @@
-import wollok.game.* 
-import tablero.*
-import example.*
+
+
+/*
 class Jugador {
     var property color = "" 
     //por ahora voy a encapsular la lógica de la ficha acá
@@ -20,3 +20,4 @@ class Jugador {
     
 
 }
+*/
