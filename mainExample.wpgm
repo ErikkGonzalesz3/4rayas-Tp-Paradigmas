@@ -1,22 +1,14 @@
 import wollok.game.*
-import juego.*
-import jugador.*
 import tablero.* 
-import example.*
+import juego.*
 
 program cuatroEnRaya {
 	game.title("4 en Raya")
-	game.height(6)
-	game.width(7)
-	game.cellSize(200) //res final: 1400 x 1200
-	
-	// game.cellSize() //tamaño de celda
-	// game.board
-
-	game.addVisual(controles)
-
+	game.width(25)
+	game.height(15)
 
 	juego.iniciarJuego()
+	(1..7).forEach {numero => keyboard.num(numero).onPressDo{juego.quiereJugar(numero) }}
 
 	game.start()
 }

@@ -5,10 +5,7 @@ import juego.*
 class Ficha {
 
 	var color
-	
-
 	var posicion
-
 	var property imagen = "assets/ficha" + color + ".png"
 	
 

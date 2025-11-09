@@ -1,6 +1,6 @@
-import example.*
+import tablero.*
+import wollok.game.*
 
-describe "" {
 
-
+describe "Test cases para la inicialización y visuales" {
 }
