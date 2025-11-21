@@ -8,8 +8,10 @@ program cuatroEnRaya {
 	game.height(15)
 
 	tablero.iniciarTablero()
+	logica.iniciarLogica()
+	// tablero.mostrarJugadaTest()
+	(0..6).forEach {numero => keyboard.num(numero).onPressDo{logica.quiereJugar(numero) }}
 
-	(1..7).forEach {numero => keyboard.num(numero).onPressDo{logica.quiereJugar(numero) }}
-	
+
 	game.start()
 }

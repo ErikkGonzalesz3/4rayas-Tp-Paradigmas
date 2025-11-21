@@ -1,14 +1,10 @@
 
 object utils {
 	method nuevaLista(size) {
-    var lista = []
-		(1..size).forEach({ n => 
-			lista.add(n)
-		})
-		return lista
-	}      
-
-
+        const lista = []
+        (0..size).forEach{ n => lista.add(n)}
+        return lista
+    }     
 }
 
 object combinacionesGanadoras {
