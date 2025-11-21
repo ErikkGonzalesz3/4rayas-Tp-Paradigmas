@@ -7,7 +7,7 @@ object tablero {
 	const property position = game.origin()
 
 	const posicionesTablero = [
-    // Fila 5 (superior)
+    	// Fila 5 (superior)
 		[ game.at(0,10), game.at(2,10), game.at(4,10), game.at(6,10), game.at(8,10), game.at(10,10), game.at(12,10) ],
 
 		// Fila 4

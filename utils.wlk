@@ -1,87 +1,87 @@
 
+import logica.*
 object utils {
 	method nuevaLista(size) {
         const lista = []
         (0..size).forEach{ n => lista.add(n)}
         return lista
     }     
+
+    method matrizVacia() {
+        const matriz = []
+        (0..5).forEach { fila =>
+            const filaActual = []
+            (0..6).forEach { col =>
+                filaActual.add(0)   
+            }
+            matriz.add(filaActual)
+        }
+        return matriz
+    }
+
+    method obtenerFilaMatriz (fila, matriz) = matriz.get(fila)
+    method obtenerColumna(columna, matriz) {
+        const lista = []
+            matriz.forEach { fila =>
+                lista.add(fila.get(columna))
+            }
+        return lista
+    }
+
+
 }
 
 object combinacionesGanadoras {
     const ganadoras = []
 
     method generarCombinacionesGanadoras() {
-        horizontal.generarCombinaciones(ganadoras)
-        vertical.generarCombinaciones(ganadoras)
-        diagonales.generarCombinaciones(ganadoras)
-        return ganadoras
+        // horizontal.generarCombinaciones(ganadoras)
+        // vertical.generarCombinaciones(ganadoras)
+        // diagonales.generarCombinaciones(ganadoras)
+        // return ganadoras
     }
 
     method verificarCombinacion(){
-        
     }
 }
 
+class Trayectoria {
+    // var size = 0
+    // var tail = 0
+    // var f = [] 
+    var hay4 = false
+    var actual = 0
 
-object horizontal {
-    method generarCombinaciones(lista) {
-    (0..5).forEach({ fila =>
-        (0..3).forEach({ col =>
-            lista.add([
-                game.at(col, fila),
-                game.at(col+1, fila),
-                game.at(col+2, fila),
-                game.at(col+3, fila)
-            ])
-        })
-    })
-    }
-}
-object vertical {
-    method generarCombinaciones(lista) {
- // VERTICALES
-    // -----------------------------
-        (0..6).forEach({ col =>
-            (0..2).forEach({ fila =>
-                lista.add([
-                    game.at(col, fila),
-                    game.at(col, fila+1),
-                    game.at(col, fila+2),
-                    game.at(col, fila+3)
-                ])
-            })
-        })
+    method esCombinacion(columna, fila, matriz) 
+    method hayCuatroEnLinea(lista) {
+        lista.forEach{n => 
+                if (n == 1 ) {
+                    actual +=1
+                    if (actual == 4 ) hay4 = true
+                } else {
+                    actual = 0 
+                }
+        }
+        return hay4
     }
 }
 
-object diagonales {
-    method generarCombinaciones(lista) {
+object horizontal inherits Trayectoria {
 
-    // DIAGONALES ↘ (abajo-derecha)
-    // -----------------------------
-    (0..3).forEach({ col =>
-        (0..2).forEach({ fila =>
-            lista.add([
-                game.at(col, fila),
-                game.at(col+1, fila+1),
-                game.at(col+2, fila+2),
-                game.at(col+3, fila+3)
-            ])
-        })
-    })
+   override method esCombinacion (columna, fila, matriz) {
+        const f = utils.obtenerFilaMatriz(fila, matriz)
+        return self.hayCuatroEnLinea(f)
+    }
+}
+object vertical inherits Trayectoria {
+    override method esCombinacion (columna, fila, matriz) {
+        const c = utils.obtenerColumna(columna, matriz)
+        return self.hayCuatroEnLinea(c)        
+    }
+}
 
-    // -----------------------------
-    // DIAGONALES ↗ (arriba-derecha)
-    // -----------------------------
-    (0..3).forEach({ col =>
-        (3..5).forEach({ fila =>
-            lista.add([
-                game.at(col, fila),
-                game.at(col+1, fila-1),
-                game.at(col+2, fila-2),
-                game.at(col+3, fila-3)
-            ])
-        })
-    })
+object diagonales inherits Trayectoria{
+    override method esCombinacion (columna, fila, matriz) {
+            
     }
 }
