@@ -1,5 +1,6 @@
 
 import logica.*
+import wollok.game.*
 object utils {
 	method nuevaLista(size) {
         const lista = []
@@ -7,48 +8,29 @@ object utils {
         return lista
     }     
 
-    method matrizVacia() {
-        const matriz = []
-        (0..5).forEach { fila =>
-            const filaActual = []
-            (0..6).forEach { col =>
-                filaActual.add(0)   
-            }
-            matriz.add(filaActual)
-        }
-        return matriz
+    method listVacia(size) {
+        const lista = []
+        (0..size).forEach{_ => lista.add(0)}
+        return lista
     }
-
+    
     method obtenerFilaMatriz (fila, matriz) = matriz.get(fila)
+
     method obtenerColumna(columna, matriz) {
         const lista = []
-            matriz.forEach { fila =>
-                lista.add(fila.get(columna))
+            (0..5).forEach { fila =>
+                const f = matriz.get(fila)
+                lista.add(f.get(columna))
             }
         return lista
     }
-
-
 }
 
-object combinacionesGanadoras {
-    const ganadoras = []
-
-    method generarCombinacionesGanadoras() {
-        // horizontal.generarCombinaciones(ganadoras)
-        // vertical.generarCombinaciones(ganadoras)
-        // diagonales.generarCombinaciones(ganadoras)
-        // return ganadoras
-    }
-
-    method verificarCombinacion(){
-    }
-}
+object verificador {
+    method verificarAlgunaCombinacion (columna, fila, matriz) = horizontal.esCombinacion(columna, fila, matriz) or vertical.esCombinacion(columna, fila, matriz) or diagonales.esCombinacion(columna, fila, matriz)
+} 
 
 class Trayectoria {
-    // var size = 0
-    // var tail = 0
-    // var f = [] 
     var hay4 = false
     var actual = 0
 
@@ -64,12 +46,13 @@ class Trayectoria {
         }
         return hay4
     }
+
 }
 
 object horizontal inherits Trayectoria {
 
    override method esCombinacion (columna, fila, matriz) {
-        const f = utils.obtenerFilaMatriz(fila, matriz)
+        const f = matriz.get(columna)
         return self.hayCuatroEnLinea(f)
     }
 }
@@ -82,6 +65,6 @@ object vertical inherits Trayectoria {
 
 object diagonales inherits Trayectoria{
     override method esCombinacion (columna, fila, matriz) {
-            
+        return false  //implementar
     }
 }

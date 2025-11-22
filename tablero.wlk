@@ -26,25 +26,9 @@ object tablero {
 		[ game.at(0,0), game.at(2,0), game.at(4,0), game.at(6,0), game.at(8,0), game.at(10,0), game.at(12,0) ]
 	]
 
+	//lista de posiciones game.at, la cuál nos va a servir para después limpiar todas las visuales en caso de finalzar el juego
+	const posicionesOcupadas = []
 
-	// method generarFilas (columna) {
-	// 	const filas = []
-	// 	(0..5).forEach({ fila =>
-	// 		filas.add(game.at(columna * 3, fila * 3))
-	// 	})
-    // 	return filas	
-	// }
-
-
-	// method cargarPosiciones() {
-	// 	(0..6).forEach({ col =>
-	// 		const filas = self.generarFilas(col)
-	// 		columnasTablero.add(filas)
-	// 	})
-	// }
-
-	
-	
 	method iniciarTablero () {
 	/* CONFIGURACIONES DEL TABLERO */
 		// self.cargarPosiciones()
@@ -53,7 +37,9 @@ object tablero {
 	}
 
 	method mostrarJugada(nombre, columna, fila) {
-		game.addVisual(new Color(color = nombre, position = self.obtenerCoordenadas(columna, fila)))
+		const c = new Color(color = nombre, position = self.obtenerCoordenadas(columna, fila))
+		game.addVisual(c)
+		posicionesOcupadas.add(c)
 	}
 	method mostrarJugadaTest() {
 		game.addVisual(new Color (color = "rojo", position = self.obtenerCoordenadas(6, 5) ))
@@ -69,8 +55,14 @@ object tablero {
 		}
 		return posicionesTablero.get(fila).get(columna)
 	}
-	
-	// method obtenerFila(columna) = columnasTablero.get(columna)
+	method imprimirGanador(_color) {
+		game.say(new Color (color = _color, position = game.at(20,30)), "Ganador el color: " + _color)
+	}
 
+	//debería limpiar las visuales de todas las fichas
+	method volverAJugar (){
+		posicionesOcupadas.forEach{p => game.removeVisual(p)}
+		posicionesOcupadas.clear()
+	}
 }
 
